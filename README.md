@@ -87,14 +87,14 @@ Function.prototype.__call = function(context, ...args) {
 
 | Function                                   | Status         | Native Function               |
 |--------------------------------------------|----------------|-------------------------------|
-| `$Map(array, callback)`                    | Implemented    | `Array.prototype.map()`       |
-| `$Filter(array, callback)`                 | Implemented    | `Array.prototype.filter()`    |
-| `$Reduce(array, callback, initialValue)`   | Implemented    | `Array.prototype.reduce()`    |
-| `$Array.from(value)`                       | Implemented    | `Array.from()`                |
-| `$Array.isArray(array)`                    | Implemented    | `Array.isArray()`             |
-| `$Array.of(value)`                         | Implemented    | `Array.of()`                  |
-| `$ForEach(array, callback)`                | Implemented           | `Array.prototype.forEach()`   |
-| `$Some(array, callback)`                   | Implemented           | `Array.prototype.some()`      |
+| `$Map(array, callback)`                    | Implemented ✅   | `Array.prototype.map()`       |
+| `$Filter(array, callback)`                 | Implemented ✅   | `Array.prototype.filter()`    |
+| `$Reduce(array, callback, initialValue)`   | Implemented ✅   | `Array.prototype.reduce()`    |
+| `$Array.from(value)`                       | Implemented ✅   | `Array.from()`                |
+| `$Array.isArray(array)`                    | Implemented ✅   | `Array.isArray()`             |
+| `$Array.of(value)`                         | Implemented ✅   | `Array.of()`                  |
+| `$ForEach(array, callback)`                | Implemented ✅          | `Array.prototype.forEach()`   |
+| `$Some(array, callback)`                   | Implemented ✅          | `Array.prototype.some()`      |
 | `$Every(array, callback)`                  | Todo           | `Array.prototype.every()`     |
 | `$Find(array, callback)`                   | Todo           | `Array.prototype.find()`      |
 | `$IndexOf(array, element)`                 | Todo           | `Array.prototype.indexOf()`   |
