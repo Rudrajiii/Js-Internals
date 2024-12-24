@@ -1,1 +1,10 @@
-{}
+{
+  "name": "@vicky/js-internals",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "js-internals": "^1.0.1"
+  }
+}
