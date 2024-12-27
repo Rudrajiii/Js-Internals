@@ -13,6 +13,21 @@ Welcome to the Custom JavaScript Functions package! This npm package provides cu
 - **Educational**: The primary goal of this package is to provide an educational resource for developers to understand the inner workings of JavaScript functions.
 - **Polyfill-style Functions**: These implementations can serve as polyfills, helping developers use similar functionality in environments where certain features may not be available.
 
+## example code 🐬
+```js
+const { INTERNAL } = require('js-internals');
+//INTERNAL  is an object that contains all the custom native funcs
+//map_internals() gives that implemented custom code of native js funcs in a seperate folder
+//You can use this custom funcs just by providing a "$" symbol before the name eg. $map();
+console.log('Map internals:', INTERNAL.map_internals());
+
+//sample example
+const numbers = [1, 2, 3];
+const filtered = numbers.$filter(n => n > 2);
+console.log('Filtered:', filtered);
+//output [3]
+```
+
 ## Project Tree 🌳
 
 ```base
@@ -40,7 +55,7 @@ Welcome to the Custom JavaScript Functions package! This npm package provides cu
 ├── 📄 package.json
 ```
 ## Sample Code of custom $call(context, ...args) [Same as native call()]
-```bash
+```js
 /**
  * Function.prototype.call() - Calls a function with a given 'this' value and arguments provided individually.
  * The "call()" method allows you to invoke a function with a specific 'this' context, along with arguments passed individually. It is useful when you want to change the context ('this') for a particular function invocation.
@@ -174,7 +189,7 @@ Hello Devs 👋🏻
 - ensure you write all the import tests for that func maintaining the proper format (eg. test_funcName.js)
 - demo test file for custom func `$call()`
 
-```bash
+```js
 const { __call } = require('../package/src/internal-custom-functions/Array_Object/Static_Methods/_call');
 
 function deepEqual(obj1, obj2) {
