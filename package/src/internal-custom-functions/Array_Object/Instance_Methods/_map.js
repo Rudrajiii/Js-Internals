@@ -27,6 +27,8 @@ module.exports = {
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
         }
+    // Check if the file already exists before overwriting
+    if (!fs.existsSync(outputPath)){
 
         const explanations = `
 /**
@@ -44,7 +46,6 @@ module.exports = {
  * A new array with each element being the result of the callback function.
 **/
 `
-
 
 const code = `
 const __call = require('./_call');
@@ -66,5 +67,8 @@ Array.prototype.__map = function(callback, context) {
         `.trim();
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         return `File created at ${outputPath}`;
+    }else{
+        return `File already exists at ${outputPath}. Skipping creation.`;
+    }
     }
 };
