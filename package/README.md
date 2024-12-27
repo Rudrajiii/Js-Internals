@@ -1,3 +1,5 @@
+<p align="center">Boost Up The Js Understanding ☠️</p>
+
 ![github-header-image (2)](https://github.com/user-attachments/assets/5306de0f-8874-41cf-a71c-a72ea621a685)
 <p align="center">
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript Badge">
