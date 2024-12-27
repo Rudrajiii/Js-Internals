@@ -1,4 +1,4 @@
-<p align="center">Boost Up The Js Understanding ☠️</p>
+Boost Up The Js Understanding ☠️
 
 ![github-header-image (2)](https://github.com/user-attachments/assets/5306de0f-8874-41cf-a71c-a72ea621a685)
 <p align="center">
