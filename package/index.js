@@ -10,12 +10,14 @@ const CustomIsArray = require('./src/internal-custom-functions/Array_Object/Stat
 const CustomOf = require('./src/internal-custom-functions/Array_Object/Static_Methods/_of');
 const CustomForEach = require('./src/internal-custom-functions/Array_Object/Instance_Methods/_forEach');
 const CustomSome = require('./src/internal-custom-functions/Array_Object/Instance_Methods/_some');
+const CustomEvery = require('./src/internal-custom-functions/Array_Object/Instance_Methods/_every');
 //Set Custom Funcs to Array Scope 
 Array.prototype.$map = CustomMap.__map;
 Array.prototype.$filter = CustomFilter.__filter;
 Array.prototype.$reduce = CustomReduce.__reduce;
 Array.prototype.$forEach = CustomForEach.__forEach;
 Array.prototype.$some = CustomSome.__some;
+Array.prototype.$every = CustomEvery.__every ;
 
 //Set Custom Funcs to Function Scope
 Function.prototype.$from = CustomFrom.__from;
@@ -38,7 +40,8 @@ module.exports = {
     isArray_internals: CustomIsArray.isArray_internals,
     of_internals: CustomOf.of_internals,
     forEach_internals: CustomForEach.forEach_internals,
-    some_internals: CustomSome.some_internals
+    some_internals: CustomSome.some_internals,
+    every_internals: CustomEvery.every_internals
 }
 };
 

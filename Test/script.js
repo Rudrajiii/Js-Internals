@@ -50,9 +50,13 @@ console.log(Array.$of());
 //* Test For $forEach(cb)
 numbers.$forEach((num) => console.log(num / 2));
 
-const number = [1, , 4];
+const number = [1,2, 4];
 const hasLargeNumber = number.$some(num => num === undefined);
 console.log("some : ",hasLargeNumber);
+
+
+let f = number.$every(n => typeof n == 'number' );
+console.log(f)
 
 console.log('Map internals:', INTERNAL.map_internals());
 console.log('Filter internals:', INTERNAL.filter_internals());
@@ -65,3 +69,4 @@ console.log('Of internals:', INTERNAL.of_internals());
 console.log('Set DS' , INTERNAL.set_internals());
 console.log('forEach internals:' , INTERNAL.forEach_internals());
 console.log('some internals:' , INTERNAL.some_internals());
+console.log('every internals:' , INTERNAL.every_internals());
