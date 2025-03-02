@@ -1,6 +1,8 @@
 // File: package/internal-custom-functions/set.js
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
+
 
 class CustomSet {
   constructor() {
@@ -81,7 +83,7 @@ class CustomSet {
     this.items = {};
   }
 }
-    `;
+`;
 
 
 const outputDir = path.join(process.cwd(), 'custom-js-functions');
@@ -91,10 +93,24 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-fs.writeFileSync(outputPath, explanations + code);
+// Check if the file already exists before overwriting
+if (fs.existsSync(outputPath)) {
+  const fileName = path.basename(outputPath);
+  console.log(
+    chalk.yellow('⚠ Skipped: ') + 
+    chalk.white(fileName) + 
+    chalk.gray(` already exists.`)
+);
 
-return `File created at ${outputPath}`;
-  }
+}else{
+  fs.writeFileSync(outputPath, explanations + code);
+ const fileName = path.basename(outputPath);
+ console.log(
+  chalk.green('✓ Created: ') + 
+  chalk.white(fileName)
+);
+}
+}
 }
 
 module.exports = CustomSet;

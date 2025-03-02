@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 
 // Custom Array.from implementation
 Function.prototype.__from = function(arrayLike, mapFn, thisArg) {
@@ -48,30 +49,33 @@ module.exports = {
         // Create the directory if it doesn't exist
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
+            console.log(chalk.blue('ℹ ') + chalk.blue(`Created directory: ${outputDir}`));
         }
+        // Check if the file already exists before overwriting
+        if (!fs.existsSync(outputPath)) {
 
         // Explanation for the __from method
         const explanations = `
 /**
- * Function.prototype.__from() - Creates a new array from an array-like or iterable object.
- * The "__from()" method takes an array-like or iterable object and creates a new array 
- * containing the elements of the input. It also supports an optional mapping function 
- * that can be applied to each element.
- * @syntax :
- * 
- * @Array.__from(arrayLike[, mapFn[, thisArg]]);
- * Array.from(arrayLike)
- * Array.from(arrayLike, mapFn)
- * Array.from(arrayLike, mapFn, thisArg)
- *
- * @arrayLike : The array-like or iterable object to convert to an array.
- * @mapFn : Optional. A mapping function to apply to each element. This function is called with
- *          the value, the index (or key), and the this value specified by thisArg.
- * @thisArg : Optional. Value to use as **this** when executing mapFn.
- *
- * @returns : A new array containing the elements from the array-like or iterable object.
- **/
-        `.trim();
+* Function.prototype.__from() - Creates a new array from an array-like or iterable object.
+* The "__from()" method takes an array-like or iterable object and creates a new array 
+* containing the elements of the input. It also supports an optional mapping function 
+* that can be applied to each element.
+* @syntax :
+* 
+* @Array.__from(arrayLike[, mapFn[, thisArg]]);
+* Array.from(arrayLike)
+* Array.from(arrayLike, mapFn)
+* Array.from(arrayLike, mapFn, thisArg)
+*
+* @arrayLike : The array-like or iterable object to convert to an array.
+* @mapFn : Optional. A mapping function to apply to each element. This function is called with
+*          the value, the index (or key), and the this value specified by thisArg.
+* @thisArg : Optional. Value to use as **this** when executing mapFn.
+*
+* @returns : A new array containing the elements from the array-like or iterable object.
+**/
+`.trim();
 
         const code = `
 Function.prototype.__from = function(arrayLike, mapFn, thisArg) {
@@ -106,11 +110,24 @@ Function.prototype.__from = function(arrayLike, mapFn, thisArg) {
     }
     return result;
 };
-
-        `.trim();
+`.trim();
 
         // Write the explanations and code to a file
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
-        return `File created at ${outputPath}`;
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.green('✓ Created: ') + 
+                chalk.white(fileName)
+            );
+        // return `File created at ${outputPath}`;
+    }else{
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.yellow('⚠ Skipped: ') + 
+                chalk.white(fileName) + 
+                chalk.gray(` already exists.`)
+            );
+        // return `File already exists at ${outputPath}`;
     }
+}
 };

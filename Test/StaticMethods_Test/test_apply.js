@@ -1,4 +1,4 @@
-const {__apply} = require('../../package/src/internal-custom-functions/Array_Object/Static_Methods/_apply') 
+const {__apply} = require('../../package/src/Polyfills/Array_Object/Static_Methods/_apply') 
 const assert = require('assert');
 
 // Helper function for deep equality comparison

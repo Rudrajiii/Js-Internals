@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const __call = require('../Static_Methods/_call');
+const chalk = require('chalk');
+const __call = require('../../Function/_call');
 
 
 // Custom forEach method
@@ -27,29 +28,32 @@ module.exports = {
 
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
+            console.log(chalk.blue('ℹ ') + chalk.blue(`Created directory: ${outputDir}`));
         }
+
+        // Check if the file already exists before overwriting
+        if (!fs.existsSync(outputPath)){
 
         const explanations = `
 /**
- * Array.prototype.forEach() - Executes a provided function once for each array element.
- * The "forEach()" method performs the specified action for each element in an array, similar to a loop. 
- * It does not return a new array, making it useful for non-returning operations like logging.
- * @syntax:
- * @array.forEach(callback(currentValue, index, array), thisArg);
- * 
- * @callback: A function called for every element of the array. Takes three arguments:
- * - @currentValue: The current element being processed in the array.
- * - @index (Optional): The index of the current element being processed.
- * - @array (Optional): The array "forEach" was called upon.
- * 
- * @thisArg (Optional): Value to use as "this" when executing the "callback".
+* Array.prototype.forEach() - Executes a provided function once for each array element.
+* The "forEach()" method performs the specified action for each element in an array, similar to a loop. 
+* It does not return a new array, making it useful for non-returning operations like logging.
+* @syntax:
+* @array.forEach(callback(currentValue, index, array), thisArg);
+* 
+* @callback: A function called for every element of the array. Takes three arguments:
+* - @currentValue: The current element being processed in the array.
+* - @index (Optional): The index of the current element being processed.
+* - @array (Optional): The array "forEach" was called upon.
+* 
+* @thisArg (Optional): Value to use as "this" when executing the "callback".
 **/
 `;
 
-        const code = `
+const code = 
+`
 const __call = require('./_call');
-
-
 Array.prototype.__forEach = function(callback, context) {
     // Check if 'callback' is a function
     if (typeof callback !== 'function') {
@@ -62,9 +66,24 @@ Array.prototype.__forEach = function(callback, context) {
         }
     }
 };
-        `.trim();
+`.trim();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
-        return `File created at ${outputPath}`;
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.green('✓ Created: ') + 
+                chalk.white(fileName)
+            );
+        // return `File created at ${outputPath}`;
     }
+    else{
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.yellow('⚠ Skipped: ') + 
+                chalk.white(fileName) + 
+                chalk.gray(` already exists.`)
+            );
+        // return `File already exists at ${outputPath}`;
+    }
+}
 };

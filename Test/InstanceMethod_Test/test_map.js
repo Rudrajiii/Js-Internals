@@ -1,5 +1,5 @@
 // const { map_internals } = require('../package/index'); 
-const { __map } = require('../../package/src/internal-custom-functions/Array_Object/Instance_Methods/_map')
+const { __map } = require('../../package/src/Polyfills/Array_Object/Instance_Methods/_map')
 function deepEqual(obj1, obj2) {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
 }

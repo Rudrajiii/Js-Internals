@@ -1,5 +1,8 @@
 {
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "js-internals": "file:.."
   }
 }

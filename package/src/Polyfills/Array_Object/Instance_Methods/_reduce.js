@@ -1,4 +1,43 @@
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const __call = require('../../Function/_call');
+Array.prototype.__reduce = function(callback, initialValue, context) {
+    let accumulator = initialValue;
+    let startIndex = 0;
 
+    if (accumulator === undefined) {
+        if (this.length === 0) {
+            throw new TypeError('Reduce of empty array with no initial value');
+        }
+        accumulator = this[0];
+        startIndex = 1;
+    }
+
+    for (let i = startIndex; i < this.length; i++) {
+        accumulator = callback.__call(context, accumulator, this[i], i, this);
+    }
+
+    return accumulator;
+};
+
+
+module.exports = {
+    __reduce: Array.prototype.__reduce,
+
+    reduce_internals: function() {
+        const outputDir = path.join(process.cwd(), 'custom-js-functions');
+        const outputPath = path.join(outputDir, 'custom_reduce.js');
+
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+            console.log(chalk.blue('ℹ ') + chalk.blue(`Created directory: ${outputDir}`));
+
+        }
+        // Check if the file already exists before overwriting
+        if (!fs.existsSync(outputPath)) {
+
+        const explanations = `
 /**
 * Array.prototype.reduce() - Applies a function against an accumulator and each element in the array to reduce it to a single value.
 * The reduce() method executes a provided reducer function (callback) on each element of the array (from left to right) and returns a single accumulated result. This method does not modify the original array. The first time the callback function is executed, it can use an optional initialValue as the first argument for the accumulator.
@@ -14,6 +53,9 @@
 * @returns:
 * The single accumulated result from reducing the array, which could be any data type based on the logic in the callback (number, string, object, etc.).
 **/
+`
+
+                const code = `
 const __call = require('./_call');
 
 Array.prototype.__reduce = function(callback, initialValue, context) {
@@ -34,3 +76,24 @@ Array.prototype.__reduce = function(callback, initialValue, context) {
 
     return accumulator;
 };
+`.trim();
+        fs.writeFileSync(outputPath, explanations + code, 'utf8');
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.green('✓ Created: ') + 
+                chalk.white(fileName)
+            );
+        // return `File created at ${outputPath}`;
+    }else{
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.yellow('⚠ Skipped: ') + 
+                chalk.white(fileName) + 
+                chalk.gray(` already exists.`)
+            );
+        // return `File already exists at ${outputPath}`;
+    }
+}
+};
+
+

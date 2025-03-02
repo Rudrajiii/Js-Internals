@@ -1,4 +1,4 @@
-const { INTERNAL } = require('../package/index');
+const { INTERNAL , GET_ALL } = require('../package/index');
 
 // Test filter
 const numbers = [1, 2, 3];
@@ -58,15 +58,65 @@ console.log("some : ",hasLargeNumber);
 let f = number.$every(n => typeof n == 'number' );
 console.log(f)
 
-console.log('Map internals:', INTERNAL.map_internals());
-console.log('Filter internals:', INTERNAL.filter_internals());
-console.log('Reduce internals:', INTERNAL.reduce_internals());
-console.log('Call internals:', INTERNAL.call_internals());
-console.log('Apply internals:', INTERNAL.apply_internals());
-console.log('From internals:', INTERNAL.from_internals());
-console.log('IsArray internals:', INTERNAL.isArray_internals());
-console.log('Of internals:', INTERNAL.of_internals());
-console.log('Set DS' , INTERNAL.set_internals());
-console.log('forEach internals:' , INTERNAL.forEach_internals());
-console.log('some internals:' , INTERNAL.some_internals());
-console.log('every internals:' , INTERNAL.every_internals());
+console.log("//-----checking for $isNaN() method---------//")
+let r = Infinity
+let d = -Infinity;
+if ($isNaN(r)){
+    console.log("Not a Number");
+}else{
+    console.log("Ya it's a Number");
+}
+if ($isFinite(d)){
+    console.log(true);
+}else{
+    console.log(false);
+}
+
+console.log("------------------------------")
+console.log(parseInt("123"));
+console.log($parseInt("123"));
+console.log("------------------------------")
+// 123 (default base-10)
+console.log(parseInt("123", 10));
+console.log($parseInt("123", 10));
+console.log("------------------------------")
+// 123 (explicitly specify base-10)
+console.log(parseInt("   123 "));
+console.log($parseInt("   123 "));
+console.log("------------------------------")
+// 123 (whitespace is ignored)
+console.log(parseInt("077"));
+console.log($parseInt("077"));
+console.log("------------------------------")
+// 77 (leading zeros are ignored)
+console.log(parseInt("1.9"));
+console.log($parseInt("1.9"));
+console.log("------------------------------")
+// 1 (decimal part is truncated)
+console.log(parseInt("ff", 16));
+console.log("imposter ",$parseInt("ff", 16));
+console.log("------------------------------")
+// 255 (lower-case hexadecimal)
+console.log(parseInt("0xFF", 16));
+console.log($parseInt("0xFF", 16));
+console.log("------------------------------")
+// 255 (upper-case hexadecimal with "0x" prefix)
+console.log(parseInt("xyz"));
+console.log($parseInt("xyz"));
+// NaN (input can't be converted to an integer)
+
+
+INTERNAL.map_internals();
+// INTERNAL.filter_internals();
+// INTERNAL.reduce_internals();
+// INTERNAL.call_internals();
+// INTERNAL.apply_internals();
+// INTERNAL.from_internals();
+// INTERNAL.isArray_internals();
+// INTERNAL.of_internals();
+// INTERNAL.set_internals();
+// INTERNAL.forEach_internals();
+// INTERNAL.some_internals();
+// INTERNAL.every_internals();
+// INTERNAL.isNaN_internals();
+GET_ALL()

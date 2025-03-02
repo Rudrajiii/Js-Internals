@@ -1,8 +1,10 @@
+Boost Up The Js Understanding ☠️
+
 ![github-header-image (2)](https://github.com/user-attachments/assets/5306de0f-8874-41cf-a71c-a72ea621a685)
 <p align="center">
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript Badge">
   <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm Badge">
-  <img src="https://img.shields.io/badge/version-1.0.6-green?style=for-the-badge" alt="Version Badge">
+  <img src="https://img.shields.io/badge/version-1.0.0-green?style=for-the-badge" alt="Version Badge">
 </p>
 
 Welcome to the Custom JavaScript Functions package! This npm package provides custom implementations of built-in JavaScript functions, allowing users to understand how these functions work internally. This is especially useful for learning purposes and for those who want to see how common JavaScript functions can be replicated.
@@ -15,17 +17,22 @@ Welcome to the Custom JavaScript Functions package! This npm package provides cu
 
 ## example code 🐬
 ```js
-const { INTERNAL } = require('js-internals');
+const { INTERNAL , GET_ALL } = require('js-internals');
 //INTERNAL  is an object that contains all the custom native funcs
 //map_internals() gives that implemented custom code of native js funcs in a seperate folder
 //You can use this custom funcs just by providing a "$" symbol before the name eg. $map();
-console.log('Map internals:', INTERNAL.map_internals());
+
+INTERNAL.map_internals() //You will get the custom implementation of map()
 
 //sample example
 const numbers = [1, 2, 3];
 const filtered = numbers.$filter(n => n > 2);
 console.log('Filtered:', filtered);
 //output [3]
+
+//Get all the custom implementations at once
+GET_ALL()
+
 ```
 
 ## Project Tree 🌳
@@ -35,24 +42,105 @@ console.log('Filtered:', filtered);
 │
 ├── 📂 src
 │   ├── 📂 DataStructures
-│   │   └── 📄 set.js
-│   ├── 📂 internal-custom-functions
-│   │   ├── 📂 Array_Object
-│   │   │   ├── 📂 Instance_Methods
+│   │   ├── 📄 Set.js
+│   │
+│   ├── 📂 Polyfills
+│   │   ├── 📂 Array
+│   │   │   ├── 📂 InstanceMethods
 │   │   │   │   ├── 📄 _map.js
 │   │   │   │   ├── 📄 _filter.js
-│   │   │   │   └── 📄 _reduce.js
-│   │   │   └── 📂 Static_Methods
-│   │   │       ├── 📄 _call.js
-│   │   │       ├── 📄 _apply.js
-│   │   │       ├── 📄 _from.js
-│   │   │       └── 📄 _isArray.js
-│   └── 📄 index.js
+│   │   │   │   ├── 📄 _reduce.js
+│   │   │   │   ├── 📄 _forEach.js
+│   │   │   │   ├── 📄 _some.js
+│   │   │   │   ├── 📄 _every.js
+│   │   │   │   ├── 📄 _find.js
+│   │   │   │   ├── 📄 _indexOf.js
+│   │   │   │   ├── 📄 _includes.js
+│   │   │   │   ├── 📄 _sort.js
+│   │   │   │   ├── 📄 _reverse.js
+│   │   │   │   ├── 📄 _splice.js
+│   │   │   │   ├── 📄 _slice.js
+│   │   │   │   ├── 📄 _concat.js
+│   │   │   │   ├── 📄 _join.js
+│   │   │   ├── 📂 StaticMethods
+│   │   │   │   ├── 📄 _from.js
+│   │   │   │   ├── 📄 _isArray.js
+│   │   │   │   ├── 📄 _of.js
+│   │   │
+│   │   ├── 📂 String
+│   │   │   ├── 📄 _charAt.js
+│   │   │   ├── 📄 _indexOf.js
+│   │   │   ├── 📄 _includes.js
+│   │   │   ├── 📄 _slice.js
+│   │   │   ├── 📄 _substring.js
+│   │   │   ├── 📄 _trim.js
+│   │   │   ├── 📄 _toLowerCase.js
+│   │   │   ├── 📄 _toUpperCase.js
+│   │   │   ├── 📄 _split.js
+│   │   │   ├── 📄 _replace.js
+│   │   │
+│   │   ├── 📂 Object
+│   │   │   ├── 📄 _keys.js
+│   │   │   ├── 📄 _values.js
+│   │   │   ├── 📄 _entries.js
+│   │   │   ├── 📄 _assign.js
+│   │   │   ├── 📄 _freeze.js
+│   │   │   ├── 📄 _seal.js
+│   │   │   ├── 📄 _getOwnPropertyDescriptor.js
+│   │   │   ├── 📄 _create.js
+│   │   │   ├── 📄 _hasOwnProperty.js
+│   │   │
+│   │   ├── 📂 Function
+│   │   │   ├── 📄 _call.js
+│   │   │   ├── 📄 _apply.js
+│   │   │   ├── 📄 _bind.js
+│   │   │
+│   │   ├── 📂 Math
+│   │   │   ├── 📄 _max.js
+│   │   │   ├── 📄 _min.js
+│   │   │   ├── 📄 _floor.js
+│   │   │   ├── 📄 _ceil.js
+│   │   │   ├── 📄 _round.js
+│   │   │   ├── 📄 _random.js
+│   │   │   ├── 📄 _abs.js
+│   │   │
+│   │   ├── 📂 Global
+│   │   │   ├── 📄 _parseInt.js
+│   │   │   ├── 📄 _parseFloat.js
+│   │   │   ├── 📄 _isNaN.js
+│   │   │   ├── 📄 _isFinite.js
+│   │   │   ├── 📄 _stringify.js
+│   │   │   ├── 📄 _parse.js
+│   │
+│   ├── 📄 index.js
 │
 ├── 📂 tests
-│   ├── 📄 test.js
+│   ├── 📂 Array
+│   │   ├── 📄 test_map.js
+│   │   ├── 📄 test_filter.js
+│   │   ├── 📄 test_reduce.js
+│   │   ├── 📄 test_forEach.js
+│   │   ├── 📄 ...
+│   ├── 📂 String
+│   │   ├── 📄 test_charAt.js
+│   │   ├── 📄 test_indexOf.js
+│   │   ├── 📄 ...
+│   ├── 📂 Object
+│   │   ├── 📄 test_keys.js
+│   │   ├── 📄 test_values.js
+│   │   ├── 📄 ...
+│   ├── 📂 Math
+│   │   ├── 📄 test_max.js
+│   │   ├── 📄 test_min.js
+│   │   ├── 📄 ...
+│   ├── 📂 Global
+│   │   ├── 📄 test_parseInt.js
+│   │   ├── 📄 test_isNaN.js
+│   │   ├── 📄 ...
+│   ├── 📄 script.js
 │
 ├── 📄 package.json
+
 ```
 ## Sample Code of custom $call(context, ...args) [Same as native call()]
 ```js
@@ -154,8 +242,8 @@ Function.prototype.__call = function(context, ...args) {
 
 | Function                                   | Status         | Native Function                     |
 |--------------------------------------------|----------------|-------------------------------------|
-| `$Call(func, thisArg, ...args)`           | Implemented    | `Function.prototype.call()`         |
-| `$Apply(func, thisArg, args)`              | Implemented    | `Function.prototype.apply()`        |
+| `$Call(func, thisArg, ...args)`           | Implemented ✅    | `Function.prototype.call()`         |
+| `$Apply(func, thisArg, args)`              | Implemented ✅   | `Function.prototype.apply()`        |
 | `$Bind(func, thisArg, ...args)`           | Todo           | `Function.prototype.bind()`         |
 
 ### Math Methods
@@ -174,10 +262,10 @@ Function.prototype.__call = function(context, ...args) {
 
 | Function                                   | Status         | Native Function                  |
 |--------------------------------------------|----------------|----------------------------------|
-| `$ParseInt(string, radix)`                 | Todo           | `parseInt()`                     |
+| `$ParseInt(string, radix)`                 | Implemented ✅            | `parseInt()`                     |
 | `$ParseFloat(string)`                      | Todo           | `parseFloat()`                   |
-| `$IsNaN(value)`                           | Todo           | `isNaN()`                        |
-| `$IsFinite(value)`                         | Todo           | `isFinite()`                     |
+| `$IsNaN(value)`                           | Implemented ✅           | `isNaN()`                        |
+| `$IsFinite(value)`                         | Implemented ✅           | `isFinite()`                     |
 | `$Stringify(value)`                        | Todo           | `JSON.stringify()`               |
 | `$Parse(jsonString)`                       | Todo           | `JSON.parse()`                   |
 

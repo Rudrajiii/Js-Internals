@@ -1,4 +1,4 @@
-const { __some } = require('../../package/src/internal-custom-functions/Array_Object/Instance_Methods/_some');
+const { __some } = require('../../package/src/Polyfills/Array_Object/Instance_Methods/_some');
 
 function deepEqual(obj1, obj2) {
     return JSON.stringify(obj1) === JSON.stringify(obj2);

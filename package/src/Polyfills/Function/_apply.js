@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 
 
 Function.prototype.__apply = function(context, argsArray) {
@@ -31,20 +32,23 @@ module.exports = {
 
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
+            console.log(chalk.blue('ℹ ') + chalk.blue(`Created directory: ${outputDir}`));
         }
+        // Check if the file already exists before overwriting
+        if (!fs.existsSync(outputPath)) {
 
         const explanations = `
 /**
- * Function.prototype.apply() - Calls a function with a given 'this' value and an array of arguments.
- * The "apply()" method allows you to invoke a function with a specific 'this' context, along with arguments passed as an array.
- * @syntax :
- * @function.apply(thisArg, [argsArray]);
+* Function.prototype.apply() - Calls a function with a given 'this' value and an array of arguments.
+* The "apply()" method allows you to invoke a function with a specific 'this' context, along with arguments passed as an array.
+* @syntax :
+* @function.apply(thisArg, [argsArray]);
 
- * @thisArg : The value to use as 'this' when calling the function. If 'thisArg' is 'null' or 'undefined', it will default to the global object ('globalThis' in non-strict mode).
- * @argsArray : An array or array-like object of arguments to pass to the function.
+* @thisArg : The value to use as 'this' when calling the function. If 'thisArg' is 'null' or 'undefined', it will default to the global object ('globalThis' in non-strict mode).
+* @argsArray : An array or array-like object of arguments to pass to the function.
 
- * @returns:
- * The result of calling the function with the provided 'this' value and arguments.
+* @returns:
+* The result of calling the function with the provided 'this' value and arguments.
 **/
 `;
 
@@ -69,9 +73,23 @@ Function.prototype.__apply = function(context, argsArray) {
 
     return result;
 };
-        `.trim();
+`.trim();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
-        return `File created at ${outputPath}`;
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.green('✓ Created: ') + 
+                chalk.white(fileName)
+            );
+        // return `File created at ${outputPath}`;
+    }else{
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.yellow('⚠ Skipped: ') + 
+                chalk.white(fileName) + 
+                chalk.gray(` already exists.`)
+            );
+        // return `File already exists at ${outputPath}`;
     }
+}
 };

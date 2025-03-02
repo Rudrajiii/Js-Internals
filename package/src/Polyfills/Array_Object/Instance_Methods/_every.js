@@ -1,4 +1,42 @@
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const __call = require('../../Function/_call');
 
+Array.prototype.__every = function(callback, context) {
+    if (!Array.isArray(this)) {
+        throw new TypeError('Object is not an array');
+    }
+    if (typeof callback !== 'function') {
+        throw new TypeError(`Unexpected Error Occured!!`);
+    }
+
+
+    const boundContext = (typeof context === 'string' && !isNaN(Number(context))) ? Number(context) : context;
+
+    for (let i = 0; i < this.length; i++) {
+        if (i in this && !callback.call(boundContext, this[i], i, this)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+module.exports = {
+    __every: Array.prototype.__every,
+
+    every_internals: function() {
+        const outputDir = path.join(process.cwd(), 'custom-js-functions');
+        const outputPath = path.join(outputDir, 'custom_every.js');
+
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+            console.log(chalk.blue('ℹ ') + chalk.blue(`Created directory: ${outputDir}`));
+        }
+        // Check if the file already exists before overwriting
+        if (!fs.existsSync(outputPath)) {
+
+        const explanations = `
 /**
 * Array.prototype.every() - Tests whether all elements in the array pass the test 
 * implemented by the provided function. It stops execution once a condition fails.
@@ -43,6 +81,9 @@
 * }, threshold);
 * console.log(withinLimit); // Output: false
 **/
+`;
+
+        const code = `
 Array.prototype.__every = function(callback, context) {
     if (typeof callback !== 'function') {
         throw new TypeError("Unexpected Error Occured!!");
@@ -60,4 +101,24 @@ Array.prototype.__every = function(callback, context) {
         }
     }
     return true;
+};
+        `.trim();
+
+        fs.writeFileSync(outputPath, explanations + code, 'utf8');
+        const fileName = path.basename(outputPath);
+            console.log(
+                chalk.green('✓ Created: ') + 
+                chalk.white(fileName)
+            );
+        // return `File created at ${outputPath}`;
+    }else{
+        const fileName = path.basename(outputPath);
+        console.log(
+            chalk.yellow('⚠ Skipped: ') + 
+            chalk.white(fileName) + 
+            chalk.gray(` already exists.`)
+        );
+        // return `File already exists at ${outputPath}`;
+    }
+}
 };
