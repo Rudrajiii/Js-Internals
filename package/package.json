@@ -1,6 +1,6 @@
 {
   "name": "js-internals",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "This is a NPM Package based on JS , Which is basically gives an deep understanding How Inbuilt Js Functions , Methods Works Under the Hood , it can be much helpful those who are intermediate or new in js or preparing for an Job Preparation !! Happy Coding 💖",
   "main": "index.js",
   "scripts": {

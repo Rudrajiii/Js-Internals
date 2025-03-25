@@ -266,8 +266,8 @@ Function.prototype.__call = function(context, ...args) {
 | `$ParseFloat(string)`                      | Todo           | `parseFloat()`                   |
 | `$IsNaN(value)`                           | Implemented ✅           | `isNaN()`                        |
 | `$IsFinite(value)`                         | Implemented ✅           | `isFinite()`                     |
+| `$Parse(jsonString)`                       | Implemented ✅           | `JSON.parse()`                   |
 | `$Stringify(value)`                        | Todo           | `JSON.stringify()`               |
-| `$Parse(jsonString)`                       | Todo           | `JSON.parse()`                   |
 
 Hello Devs 👋🏻
 `If you want to contribute you are always Welcome !! Come and Contribute Here > 3 💗🫠`
