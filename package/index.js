@@ -100,10 +100,11 @@ const CustomOf = require('./src/Polyfills/Array_Object/Static_Methods/_of');
 const CustomCall = require('./src/Polyfills/Function/_call');
 const CustomApply = require('./src/Polyfills/Function/_apply');
 
-//Global Methods
+//*Global Methods
 const CustomNaN = require('./src/Polyfills/Global/_isNaN');
 const CustomisFinite = require('./src/Polyfills/Global/_isFinite');
 const CustomparseInt = require('./src/Polyfills/Global/_parseInt');
+const CustomparseJSON = require('./src/Polyfills/Global/_parseJSON');
 
 //Set Custom Funcs to Array Scope 
 Array.prototype.$map = CustomMap.__map;
@@ -124,6 +125,7 @@ Function.prototype.$of = CustomOf.__of;
 $isNaN = CustomNaN.$isNaN;
 $isFinite = CustomisFinite.$isFinite;
 $parseInt = CustomparseInt.$parseInt;
+$parseJSON = CustomparseJSON.$parseJSON;
 
 // Add function to run all internals
 function GET_ALL() {
@@ -146,7 +148,8 @@ function GET_ALL() {
     { name: 'Every', fn: CustomEvery.every_internals },
     { name: 'IsNaN', fn: CustomNaN.isNaN_internals },
     { name: 'IsFinite', fn: CustomisFinite.isFinite_internals },
-    { name: 'parseInt', fn: CustomparseInt.parseInt_internals }
+    { name: 'parseInt', fn: CustomparseInt.parseInt_internals },
+    { name: 'parseJSON', fn: CustomparseJSON.parseJSON_internals }
   ];
   
   // Process each internal
@@ -178,8 +181,9 @@ module.exports = {
     every_internals: CustomEvery.every_internals,
     isNaN_internals: CustomNaN.isNaN_internals,
     isFinite_internals: CustomisFinite.isFinite_internals,
-    parseInt_internals: CustomparseInt.parseInt_internals
+    parseInt_internals: CustomparseInt.parseInt_internals,
+    parseJSON_internals: CustomparseJSON.parseJSON_internals
 },
-GET_ALL
+  GET_ALL
 };
 

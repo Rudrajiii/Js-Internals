@@ -32,6 +32,7 @@ results=()
 run_test "test_isNaN.js"
 run_test "test_isFinite.js"
 run_test "test_parseInt.js"
+run_test "test_parseJSON.js"
 
 
 # Print the results in a stylish table format

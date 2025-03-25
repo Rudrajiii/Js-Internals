@@ -1,4 +1,5 @@
 const { INTERNAL , GET_ALL } = require('../package/index');
+const { $parseJSON } = require('../package/src/Polyfills/Global/_parseJSON');
 
 // Test filter
 const numbers = [1, 2, 3];
@@ -105,8 +106,14 @@ console.log(parseInt("xyz"));
 console.log($parseInt("xyz"));
 // NaN (input can't be converted to an integer)
 
+console.log("::::::::::::::::::::::::::::")
+let obj = JSON.parse('"  null  "');
+console.log(obj);
+let myObj = $parseJSON('"  null  "');
+console.log(myObj);
+console.log("::::::::::::::::::::::::::::")
 
-INTERNAL.map_internals();
+// INTERNAL.map_internals();
 // INTERNAL.filter_internals();
 // INTERNAL.reduce_internals();
 // INTERNAL.call_internals();
