@@ -1,5 +1,5 @@
 const { INTERNAL , GET_ALL } = require('../package/index');
-const { $parseJSON } = require('../package/src/Polyfills/Global/_parseJSON');
+
 
 // Test filter
 const numbers = [1, 2, 3];
