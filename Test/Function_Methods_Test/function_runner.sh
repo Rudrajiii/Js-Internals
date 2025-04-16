@@ -28,15 +28,15 @@ run_test() {
 # Array to store results
 results=()
 
-# Run the test files for static methods
-run_test "test_from.js"
-run_test "test_isArray.js"
-run_test "test_of.js"
+# Run the test files for instance methods
+run_test "test_apply.js"
+run_test "test_bind.js"
+run_test "test_call.js"
 
 
 # Print the results in a stylish table format
 echo "========================================="
-echo "    Test Results For Static Methods      "
+echo "   Test Results For Global Methods     "
 echo "========================================="
 printf "%-20s | %-5s | %-10s\n" "Test Name" "Result" "Time Taken"
 echo "-----------------------------------------"
@@ -49,4 +49,3 @@ done
 
 echo "========================================="
 echo "All tests completed! ➡️"
-                

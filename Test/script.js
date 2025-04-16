@@ -113,6 +113,34 @@ let myObj = $parseJSON('"  null  "');
 console.log(myObj);
 console.log("::::::::::::::::::::::::::::")
 
+console.log("------------------custom bind()------------------");
+const person1 = {
+    name: "Alex",
+    greet: function() {
+      console.log("Hello, I'm " + this.name);
+    }
+  };
+  
+  const greetFunc = person1.greet;
+  greetFunc(); // ❌ 'this' is undefined or global object
+  
+  const boundGreet = person1.greet.bind(person1);
+  boundGreet(); // ✅ "Hello, I'm Alex"
+  const boundGreetCustom = person1.greet.$bind(person1);
+  boundGreetCustom(); // ✅ "Hello, I'm Alex"
+
+  function multiply(a, b) {
+    return a * b;
+  }
+  
+  const double = multiply.bind(null, 2);
+  console.log(double(5)); // ✅ 10
+  const doubleCustom = multiply.$bind(null, 2);
+  console.log(doubleCustom(5)); // ✅ 10
+    
+  
+console.log("------------------custom bind()------------------");
+
 // INTERNAL.map_internals();
 // INTERNAL.filter_internals();
 // INTERNAL.reduce_internals();

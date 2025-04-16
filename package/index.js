@@ -99,6 +99,7 @@ const CustomOf = require('./src/Polyfills/Array_Object/Static_Methods/_of');
 //*Function_Objects
 const CustomCall = require('./src/Polyfills/Function/_call');
 const CustomApply = require('./src/Polyfills/Function/_apply');
+const CustomBind = require('./src/Polyfills/Function/_bind');
 
 //*Global Methods
 const CustomNaN = require('./src/Polyfills/Global/_isNaN');
@@ -120,6 +121,7 @@ Function.prototype.$call = CustomCall.__call;
 Function.prototype.$apply = CustomApply.__apply;
 Function.prototype.$isArray = CustomIsArray.__isArray;
 Function.prototype.$of = CustomOf.__of;
+Function.prototype.$bind = CustomBind.__bind;
 
 //Set in Global Scope
 $isNaN = CustomNaN.$isNaN;
@@ -149,7 +151,8 @@ function GET_ALL() {
     { name: 'IsNaN', fn: CustomNaN.isNaN_internals },
     { name: 'IsFinite', fn: CustomisFinite.isFinite_internals },
     { name: 'parseInt', fn: CustomparseInt.parseInt_internals },
-    { name: 'parseJSON', fn: CustomparseJSON.parseJSON_internals }
+    { name: 'parseJSON', fn: CustomparseJSON.parseJSON_internals },
+    { name: 'Bind', fn: CustomBind.bind_internals },
   ];
   
   // Process each internal
@@ -182,7 +185,8 @@ module.exports = {
     isNaN_internals: CustomNaN.isNaN_internals,
     isFinite_internals: CustomisFinite.isFinite_internals,
     parseInt_internals: CustomparseInt.parseInt_internals,
-    parseJSON_internals: CustomparseJSON.parseJSON_internals
+    parseJSON_internals: CustomparseJSON.parseJSON_internals,
+    bind_internals: CustomBind.bind_internals,
 },
   GET_ALL
 };
