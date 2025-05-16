@@ -106,6 +106,7 @@ const CustomNaN = require('./src/Polyfills/Global/_isNaN');
 const CustomisFinite = require('./src/Polyfills/Global/_isFinite');
 const CustomparseInt = require('./src/Polyfills/Global/_parseInt');
 const CustomparseJSON = require('./src/Polyfills/Global/_parseJSON');
+const CustomStringifyJSON = require('./src/Polyfills/Global/_stringifyJSON');
 
 //Set Custom Funcs to Array Scope 
 Array.prototype.$map = CustomMap.__map;
@@ -128,6 +129,7 @@ $isNaN = CustomNaN.$isNaN;
 $isFinite = CustomisFinite.$isFinite;
 $parseInt = CustomparseInt.$parseInt;
 $parseJSON = CustomparseJSON.$parseJSON;
+$stringifyJSON = CustomStringifyJSON.$stringifyJSON;
 
 // Add function to run all internals
 function GET_ALL() {
@@ -153,6 +155,7 @@ function GET_ALL() {
     { name: 'parseInt', fn: CustomparseInt.parseInt_internals },
     { name: 'parseJSON', fn: CustomparseJSON.parseJSON_internals },
     { name: 'Bind', fn: CustomBind.bind_internals },
+    { name: 'StringifyJSON', fn: CustomStringifyJSON.stringifyJSON_internals },
   ];
   
   // Process each internal
@@ -187,6 +190,7 @@ module.exports = {
     parseInt_internals: CustomparseInt.parseInt_internals,
     parseJSON_internals: CustomparseJSON.parseJSON_internals,
     bind_internals: CustomBind.bind_internals,
+    stringifyJSON_internals: CustomStringifyJSON.stringifyJSON_internals,
 },
   GET_ALL
 };

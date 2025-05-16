@@ -178,7 +178,7 @@ Function.prototype.__call = function(context, ...args) {
 ```
 
 ## Sample Output 📦 ~
-![image](https://github.com/user-attachments/assets/f50c836d-786f-4865-a7c2-d6a1dffa60a7)
+![img](https://github.com/user-attachments/assets/f50c836d-786f-4865-a7c2-d6a1dffa60a7)
 
 ## Progress ✨ ~
 ![image](https://github.com/user-attachments/assets/3a02bbdf-7990-40f7-8c1b-fabc8d90db19)

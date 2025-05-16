@@ -1,3 +1,4 @@
+
 /**
 * Custom implementation of JSON.parse().
 *
@@ -29,7 +30,7 @@ function $parseJSON(str, reviver = null) {
         throw new SyntaxError('Error parsing JSON: undefined is not a valid JSON value');
     }
 
-    if (/,s*[]}]/.test(str.trim())) {
+    if (/,\s*[\]}]/.test(str.trim())) {
         throw new Error('Error parsing JSON: Invalid trailing comma');
     }
 
@@ -86,11 +87,4 @@ function $parseJSON(str, reviver = null) {
     } catch (error) {
         throw new Error('Error parsing JSON: ' + error.message);
     }
-}
-
-function applyReviver(value, reviver, key = '', holder = null) {
-    if (typeof reviver === 'function') {
-        return reviver(key, value, holder);
-    }
-    return value;
 }

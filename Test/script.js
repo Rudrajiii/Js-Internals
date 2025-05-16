@@ -141,6 +141,26 @@ const person1 = {
   
 console.log("------------------custom bind()------------------");
 
+console.log("------------------custom stringify()------------------");
+const object = {
+  date: new Date("2020-01-01T00:00:00.000Z"),
+  customObj: {
+    toJSON() {
+      return "custom";
+    },
+  },
+  nested: {
+    a: 1,
+    b: undefined,
+    c: [3, 4],
+  },
+};
+console.log('Native JSON.stringify:');
+console.log(JSON.stringify(object, null, 2));
+
+console.log('\nCustom $stringifyJSON:');
+console.log($stringifyJSON(object, null, 2));
+console.log("-------------------custom stringify()------------------");
 // INTERNAL.map_internals();
 // INTERNAL.filter_internals();
 // INTERNAL.reduce_internals();
