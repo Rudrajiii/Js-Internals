@@ -51,22 +51,7 @@ module.exports = {
 **/
 `;
 
-const code = 
-`
-const __call = require('./_call');
-Array.prototype.__forEach = function(callback, context) {
-    // Check if 'callback' is a function
-    if (typeof callback !== 'function') {
-        throw new TypeError( callback ,"is not a function");
-    }
-    const boundContext = (typeof context === 'string' && !isNaN(Number(context))) ? Number(context) : context;
-    for (let i = 0; i < this.length; i++) {
-        if (this.hasOwnProperty(i)) {
-            callback.__call(boundContext, this[i], i, this);
-        }
-    }
-};
-`.trim();
+        const code = 'Array.prototype.__forEach = '+Array.prototype.__forEach.toString();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);

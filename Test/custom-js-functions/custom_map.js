@@ -13,19 +13,16 @@
 * @returns:
 * A new array with each element being the result of the callback function.
 **/
-const __call = require('./_call');
-
 Array.prototype.__push = function(element) {
     this[this.length] = element;
     return this.length;
-};
-
+}
 Array.prototype.__map = function(callback, context) {
     const temp = [];
 
     for (let i = 0; i < this.length; i++) {
-        const result = callback.__call(context, this[i], i, this); 
+        const result = callback.__call(context, this[i], i, this);
         temp.__push(result);
     }
     return temp;
-};
+}

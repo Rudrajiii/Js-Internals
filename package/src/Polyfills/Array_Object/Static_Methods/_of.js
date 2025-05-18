@@ -30,13 +30,7 @@ module.exports = {
 * @returns {Array} - A new Array instance containing the provided items.
 **/`;
 
-        const code = 
-`
-require('./_from');
-Function.prototype.__of = function(...args) {
-    return Array.__from(args);
-};
-`.trim();
+        const code = '\n' + 'Array.__from = ' + Array.__from.toString() + '\n' + 'Function.prototype.__of = ' + Function.prototype.__of.toString() ;
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);

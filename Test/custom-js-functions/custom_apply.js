@@ -17,7 +17,7 @@ Function.prototype.__apply = function(context, argsArray) {
     }
 
     if (argsArray !== undefined && !Array.isArray(argsArray)) {
-            throw new TypeError("CreateListFromArrayLike called on non-object or non-array.");
+        throw new TypeError("CreateListFromArrayLike called on non-object or non-array.");
     }
 
     if (context === undefined || context === null) {
@@ -28,6 +28,5 @@ Function.prototype.__apply = function(context, argsArray) {
     boundContext.func = this;
     const result = boundContext.func(...(argsArray || []));
     delete boundContext.func;
-
     return result;
-};
+}

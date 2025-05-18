@@ -46,9 +46,8 @@ function $parseInt(value, radix = 10) {
 
     if (str === 'Infinity' || str === 'NaN' || str === '') return NaN;
 
-    // Handle hexadecimal notation
     if (str.startsWith('0x') || str.startsWith('0X')) {
-        if (radix === 10) radix = 16; // Match native behavior
+        if (radix === 10) radix = 16;
         str = str.slice(2);
     }
 

@@ -54,29 +54,7 @@ module.exports = {
 * The single accumulated result from reducing the array, which could be any data type based on the logic in the callback (number, string, object, etc.).
 **/
 `
-
-                const code = `
-const __call = require('./_call');
-
-Array.prototype.__reduce = function(callback, initialValue, context) {
-    let accumulator = initialValue;
-    let startIndex = 0;
-
-    if (accumulator === undefined) {
-        if (this.length === 0) {
-            throw new TypeError('Reduce of empty array with no initial value');
-        }
-        accumulator = this[0];
-        startIndex = 1;
-    }
-
-    for (let i = startIndex; i < this.length; i++) {
-        accumulator = callback.__call(context, accumulator, this[i], i, this);
-    }
-
-    return accumulator;
-};
-`.trim();
+        const code = 'Array.prototype.__reduce = ' + Array.prototype.__reduce.toString();
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);
             console.log(

@@ -13,11 +13,10 @@
 * 
 * @thisArg (Optional): Value to use as "this" when executing the "callback".
 **/
-const __call = require('./_call');
 Array.prototype.__forEach = function(callback, context) {
     // Check if 'callback' is a function
     if (typeof callback !== 'function') {
-        throw new TypeError( callback ,"is not a function");
+        throw new TypeError(`${callback} is not a function`);
     }
     const boundContext = (typeof context === 'string' && !isNaN(Number(context))) ? Number(context) : context;
     for (let i = 0; i < this.length; i++) {
@@ -25,4 +24,4 @@ Array.prototype.__forEach = function(callback, context) {
             callback.__call(boundContext, this[i], i, this);
         }
     }
-};
+}

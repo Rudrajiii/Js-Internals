@@ -11,7 +11,8 @@
  * @returns:
  * A new function with the same body and scope as the original function, but with 'this' bound to the specified value,
  * and with initial arguments if provided.
- */Function.prototype.__bind = function(context, ...args) {
+ */
+Function.prototype.__bind = function(context, ...args) {
   if (typeof this !== "function") {
     throw new Error(this + " is not a function.");
   }
@@ -33,4 +34,4 @@
     delete boundContext.func;
     return result;
   };
-};
+}

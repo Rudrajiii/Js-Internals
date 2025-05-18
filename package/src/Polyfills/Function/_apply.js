@@ -52,28 +52,7 @@ module.exports = {
 **/
 `;
 
-        const code = `
-Function.prototype.__apply = function(context, argsArray) {
-    if (typeof this !== "function") {
-        throw new Error(this + " is not a function.");
-    }
-
-    if (argsArray !== undefined && !Array.isArray(argsArray)) {
-            throw new TypeError("CreateListFromArrayLike called on non-object or non-array.");
-    }
-
-    if (context === undefined || context === null) {
-        context = globalThis;
-    }
-
-    const boundContext = Object(context);
-    boundContext.func = this;
-    const result = boundContext.func(...(argsArray || []));
-    delete boundContext.func;
-
-    return result;
-};
-`.trim();
+        const code = 'Function.prototype.__apply = ' + Function.prototype.__apply.toString();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);

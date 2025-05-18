@@ -54,15 +54,7 @@ module.exports = {
 */
 `;
 
-        const code = `
-function $isFinite(value) {
-    const numericValue = Number(value);
-    return  typeof numericValue === 'number' 
-            && !$isNaN(numericValue) 
-            && numericValue !== Infinity 
-            && numericValue !== -Infinity;
-    }
-`.trim();
+        const code = $isFinite.toString();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
          const fileName = path.basename(outputPath);

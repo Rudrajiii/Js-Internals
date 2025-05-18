@@ -48,25 +48,7 @@ module.exports = {
 * A new array with each element being the result of the callback function.
 **/
 `
-
-const code = `
-const __call = require('./_call');
-
-Array.prototype.__push = function(element) {
-    this[this.length] = element;
-    return this.length;
-};
-
-Array.prototype.__map = function(callback, context) {
-    const temp = [];
-
-    for (let i = 0; i < this.length; i++) {
-        const result = callback.__call(context, this[i], i, this); 
-        temp.__push(result);
-    }
-    return temp;
-};
-        `.trim();
+        const code = 'Array.prototype.__push = ' + Array.prototype.__push.toString() + '\n' + 'Array.prototype.__map = ' + Array.prototype.__map.toString();
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);
             console.log(

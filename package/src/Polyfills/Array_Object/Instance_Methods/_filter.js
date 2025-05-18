@@ -51,25 +51,7 @@ module.exports = {
 **/
 `
 
-            const code = `
-const __call = require('./_call');
-
-Array.prototype.__push = function(element) {
-    this[this.length] = element;
-    return this.length;
-};
-
-Array.prototype.__filter = function(callback, context) {
-    const temp = [];
-
-    for (let i = 0; i < this.length; i++) {
-        if(callback.__call(context , this[i] , i , this)){
-            temp.__push(this[i]);
-        }
-    }
-    return temp;
-};
-`.trim();
+        const code = 'Array.prototype.__push = ' + Array.prototype.__push.toString()+ '\n' + 'Array.prototype.__filter = ' + Array.prototype.__filter.toString();
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);
             console.log(

@@ -16,7 +16,8 @@
 * @thisArg : Optional. Value to use as **this** when executing mapFn.
 *
 * @returns : A new array containing the elements from the array-like or iterable object.
-**/Function.prototype.__from = function(arrayLike, mapFn, thisArg) {
+**/
+Function.prototype.__from = function(arrayLike, mapFn, thisArg) {
     // Check if arrayLike is null or undefined
     if (arrayLike == null) {
         throw new TypeError('Invalid input: Expected an array-like object');
@@ -47,4 +48,4 @@
         }
     }
     return result;
-};
+}

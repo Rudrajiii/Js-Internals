@@ -13,13 +13,10 @@
 * @returns
 *  A new array with the elements that pass the test. If no elements pass the test, an empty array will be returned.
 **/
-const __call = require('./_call');
-
 Array.prototype.__push = function(element) {
     this[this.length] = element;
     return this.length;
-};
-
+}
 Array.prototype.__filter = function(callback, context) {
     const temp = [];
 
@@ -29,4 +26,4 @@ Array.prototype.__filter = function(callback, context) {
         }
     }
     return temp;
-};
+}

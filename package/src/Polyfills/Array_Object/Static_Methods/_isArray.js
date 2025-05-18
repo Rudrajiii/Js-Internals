@@ -31,11 +31,7 @@ module.exports = {
 **/
 `;
 
-        const code = `
-Function.prototype.__isArray = function(value) {
-    return Object.prototype.toString.__call(value) === '[object Array]';
-};
-`.trim();
+        const code = 'Function.prototype.__isArray = ' + Function.prototype.__isArray.toString();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);

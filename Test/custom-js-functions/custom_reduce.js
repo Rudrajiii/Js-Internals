@@ -14,8 +14,6 @@
 * @returns:
 * The single accumulated result from reducing the array, which could be any data type based on the logic in the callback (number, string, object, etc.).
 **/
-const __call = require('./_call');
-
 Array.prototype.__reduce = function(callback, initialValue, context) {
     let accumulator = initialValue;
     let startIndex = 0;
@@ -33,4 +31,4 @@ Array.prototype.__reduce = function(callback, initialValue, context) {
     }
 
     return accumulator;
-};
+}

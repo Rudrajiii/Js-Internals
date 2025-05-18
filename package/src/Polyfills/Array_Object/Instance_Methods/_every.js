@@ -83,26 +83,7 @@ module.exports = {
 **/
 `;
 
-        const code = `
-Array.prototype.__every = function(callback, context) {
-    if (typeof callback !== 'function') {
-        throw new TypeError("Unexpected Error Occured!!");
-    }
-
-    if (!Array.isArray(this)) {
-        throw new TypeError('Object is not an array');
-    }
-
-    const boundContext = (typeof context === 'string' && !isNaN(Number(context))) ? Number(context) : context;
-
-    for (let i = 0; i < this.length; i++) {
-        if (i in this && !callback.call(boundContext, this[i], i, this)) {
-            return false;
-        }
-    }
-    return true;
-};
-        `.trim();
+        const code = 'Array.prototype.__every = '+ Array.prototype.__every.toString();
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);

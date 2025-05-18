@@ -27,4 +27,4 @@ Function.prototype.__call = function(context, ...args) {
     delete boundContext.func;
 
     return result;
-};
+}

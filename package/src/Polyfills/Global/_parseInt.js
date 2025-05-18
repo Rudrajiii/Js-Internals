@@ -109,63 +109,7 @@ module.exports = {
 * console.log($parseInt("Infinity"));// NaN (Not a valid number)
 */
 `;
-        const code = `
-function $parseInt(value, radix = 10) {
-    if (Array.isArray(value)) {
-        value = value[0];
-    }
-
-    if (typeof value !== 'string' && typeof value !== 'number') return NaN;
-
-    let str = String(value).trim();
-
-    if (str === 'Infinity' || str === 'NaN' || str === '') return NaN;
-
-    // Handle hexadecimal notation
-    if (str.startsWith('0x') || str.startsWith('0X')) {
-        if (radix === 10) radix = 16; // Match native behavior
-        str = str.slice(2);
-    }
-
-    if (radix < 2 || radix > 36 || !Number.isInteger(radix)) return NaN;
-
-    let result = 0;
-    let sign = 1;
-    let i = 0;
-
-    if (str[i] === '-') {
-        sign = -1;
-        i++;
-    } else if (str[i] === '+') {
-        i++;
-    }
-
-    let hasValidDigits = false;
-
-    while (i < str.length) {
-        let char = str[i].toLowerCase();
-        let digit;
-
-        if (char >= '0' && char <= '9') {
-            digit = char.charCodeAt(0) - 48;
-        } else if (char >= 'a' && char <= 'z') {
-            digit = char.charCodeAt(0) - 87;
-        } else {
-            break;
-        }
-
-        if (digit >= radix) break;
-
-        hasValidDigits = true;
-        result = result * radix + digit;
-        i++;
-    }
-
-    if (!hasValidDigits) return NaN;
-
-    return sign * result;
-}  
-`.trim();
+        const code = $parseInt.toString();
 
             fs.writeFileSync(outputPath,explanations + code , 'utf-8');
             const fileName = path.basename(outputPath);

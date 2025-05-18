@@ -79,23 +79,7 @@ module.exports = {
 **/
 `;
 
-        const code = `
-Array.prototype.__some = function(callback , context){
-    if (typeof callback !== 'function') {
-        throw new TypeError(callback + "is not a function");
-    }
-    const boundContext = (typeof context === 'string' && !isNaN(Number(context))) ? Number(context) : context;
-    for (let i = 0; i < this.length; i++) {
-        if (this.hasOwnProperty(i)) {
-            if (i in this && callback.__call(boundContext, this[i], i, this)) {
-                return true; 
-            }
-        }
-    }
-    return false;
-};
-`.trim();
-
+        const code = 'Array.prototype.__some = ' + Array.prototype.__some.toString();
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);
             console.log(

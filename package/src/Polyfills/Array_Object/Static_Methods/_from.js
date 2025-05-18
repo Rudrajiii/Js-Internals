@@ -77,40 +77,7 @@ module.exports = {
 **/
 `.trim();
 
-        const code = `
-Function.prototype.__from = function(arrayLike, mapFn, thisArg) {
-    // Check if arrayLike is null or undefined
-    if (arrayLike == null) {
-        throw new TypeError('Invalid input: Expected an array-like object');
-    }
-
-    // Handle strings as special case
-    if (typeof arrayLike === 'string') {
-        return Array.from(arrayLike, (char) => {
-            const num = Number(char);
-            return isNaN(num) ? char : num; // Convert to number if possible
-        });
-    }
-
-    // Check for valid array-like object
-    const len = arrayLike.length;
-
-    if (typeof len !== 'number' || len < 0 || len % 1 !== 0) {
-        return undefined; // Not an array-like object
-    }
-
-    const result = [];
-    for (let i = 0; i < len; i++) {
-        // Ensure the index exists in the object
-        if (i in arrayLike) {
-            const element = arrayLike[i];
-            // Use mapFn.call instead of mapFn.__call
-            result[i] = typeof mapFn === 'function' ? mapFn.call(thisArg, element, i) : element;
-        }
-    }
-    return result;
-};
-`.trim();
+        const code = '\n'+'Function.prototype.__from = ' + Function.prototype.__from.toString();
 
         // Write the explanations and code to a file
         fs.writeFileSync(outputPath, explanations + code, 'utf8');

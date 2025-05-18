@@ -8,5 +8,5 @@
 * @returns {boolean} - True if the value is an array, false otherwise.
 **/
 Function.prototype.__isArray = function(value) {
-    return Object.prototype.toString.__call(value) === '[object Array]';
-};
+    return Object.prototype.toString.call(value) === '[object Array]';
+}

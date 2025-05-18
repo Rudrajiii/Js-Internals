@@ -22,6 +22,9 @@
 * console.log(isFinite("hello")); // false (cannot be converted to number)
 */
 function $isFinite(value) {
+    if (value instanceof Number) {
+        value = value.valueOf();
+    }
     const numericValue = Number(value);
     return  typeof numericValue === 'number' 
             && !$isNaN(numericValue) 

@@ -40,12 +40,8 @@ module.exports = {
 */
 `;
 
-        const code = `
-function $isNaN(value) {
-    const numericValue = Number(value);
-    return numericValue !== numericValue;
-}
-        `.trim();
+        const code = $isNaN.toString();
+        
 
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);

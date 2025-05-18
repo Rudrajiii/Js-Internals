@@ -54,30 +54,9 @@ module.exports = {
  * and with initial arguments if provided.
  */`;
 
-      const code = `
-Function.prototype.__bind = function(context, ...args) {
-  if (typeof this !== "function") {
-    throw new Error(this + " is not a function.");
-  }
-  
-  const originalFunction = this;
-  
-  if (context === undefined || context === null) {
-    context = globalThis;
-  }
-  
-  return function bound(...newArgs) {
-    const allArgs = [...args, ...newArgs];
-    
-    const boundContext = Object(context);
-    boundContext.func = originalFunction;
-    
-    const result = boundContext.func(...allArgs);
-    
-    delete boundContext.func;
-    return result;
-  };
-};`.trim();
+      const code = '\n' +
+        'Function.prototype.__bind = ' + 
+        Function.prototype.__bind.toString();
 
       fs.writeFileSync(outputPath, explanations + code, 'utf8');
       const fileName = path.basename(outputPath);

@@ -44,13 +44,13 @@
 * console.log(withinLimit); // Output: false
 **/
 Array.prototype.__every = function(callback, context) {
-    if (typeof callback !== 'function') {
-        throw new TypeError("Unexpected Error Occured!!");
-    }
-
     if (!Array.isArray(this)) {
         throw new TypeError('Object is not an array');
     }
+    if (typeof callback !== 'function') {
+        throw new TypeError(`Unexpected Error Occured!!`);
+    }
+
 
     const boundContext = (typeof context === 'string' && !isNaN(Number(context))) ? Number(context) : context;
 
@@ -60,4 +60,4 @@ Array.prototype.__every = function(callback, context) {
         }
     }
     return true;
-};
+}

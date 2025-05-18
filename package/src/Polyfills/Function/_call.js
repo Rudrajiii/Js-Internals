@@ -50,27 +50,7 @@ module.exports = {
 * The result of calling the function with the provided 'this' value and arguments.
 **/
 `
-
-
-                const code = `
-Function.prototype.__call = function(context, ...args) {
-    if (typeof this !== "function") {
-        throw new Error(this + " is not a function.");
-    }
-
-    if (context === undefined || context === null) {
-        return this.apply(globalThis, args);
-    }
-
-    const boundContext = Object(context);
-
-    boundContext.func = this;
-    const result = boundContext.func(...args);
-    delete boundContext.func;
-
-    return result;
-};
-        `.trim();
+        const code = 'Function.prototype.__call = ' + Function.prototype.__call.toString();
         fs.writeFileSync(outputPath, explanations + code, 'utf8');
         const fileName = path.basename(outputPath);
             console.log(
