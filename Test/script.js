@@ -161,6 +161,26 @@ console.log(JSON.stringify(object, null, 2));
 console.log('\nCustom $stringifyJSON:');
 console.log($stringifyJSON(object, null, 2));
 console.log("-------------------custom stringify()------------------");
+
+
+
+console.log("------------------custom parseFloat()------------------");
+console.log($parseFloat("3.14"));           // 3.14
+console.log($parseFloat("   -123.45   "));  // -123.45
+console.log($parseFloat("123abc"));         // 123
+console.log($parseFloat("abc123"));
+console.log($parseFloat(".123"));
+console.log($parseFloat("1.0e+308"));
+
+console.log("-------------------------------------------------------")
+console.log(parseFloat("3.14"));           // 3.14
+console.log(parseFloat("   -123.45   "));  // -123.45
+console.log(parseFloat("123abc"));         // 123
+console.log(parseFloat("abc123")); // NaN
+console.log(parseFloat(".123"));
+console.log(parseFloat("1.0e+308"));
+console.log("------------------custom parseFloat()------------------");
+
 // INTERNAL.map_internals();
 // INTERNAL.filter_internals();
 // INTERNAL.reduce_internals();

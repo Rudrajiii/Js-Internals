@@ -1,4 +1,3 @@
-
 /**
  * Function.prototype.bind() - Creates a new function with a specified 'this' value and initial arguments.
  * The "bind()" method creates a new function that, when called, has its 'this' value set to the provided value,

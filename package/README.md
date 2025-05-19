@@ -4,7 +4,7 @@ Boost Up The Js Understanding ☠️
 <p align="center">
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript Badge">
   <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm Badge">
-  <img src="https://img.shields.io/badge/version-1.1.3-green?style=for-the-badge" alt="Version Badge">
+  <img src="https://img.shields.io/badge/version-1.2.2-green?style=for-the-badge" alt="Version Badge">
 </p>
 
 Welcome to the Custom JavaScript Functions package! This npm package provides custom implementations of built-in JavaScript functions, allowing users to understand how these functions work internally. This is especially useful for learning purposes and for those who want to see how common JavaScript functions can be replicated.
@@ -177,14 +177,8 @@ Function.prototype.__call = function(context, ...args) {
 
 ```
 
-## Sample Output 📦 ~
-![img](https://github.com/user-attachments/assets/f50c836d-786f-4865-a7c2-d6a1dffa60a7)
-
 ## Progress ✨ ~
 ![image](https://github.com/user-attachments/assets/3a02bbdf-7990-40f7-8c1b-fabc8d90db19)
-
-
-
 
 ## Available Functions 🚀
 
@@ -265,11 +259,11 @@ Function.prototype.__call = function(context, ...args) {
 | Function                                   | Status         | Native Function                  |
 |--------------------------------------------|----------------|----------------------------------|
 | `$ParseInt(string, radix)`                 | Implemented ✅            | `parseInt()`                     |
-| `$ParseFloat(string)`                      | Todo           | `parseFloat()`                   |
+| `$ParseFloat(string)`                      | Implemented ✅           | `parseFloat()`                   |
 | `$IsNaN(value)`                           | Implemented ✅           | `isNaN()`                        |
 | `$IsFinite(value)`                         | Implemented ✅           | `isFinite()`                     |
 | `$parseJSON(jsonString)`                       | Implemented ✅           | `JSON.parse()`                   |
-| `$Stringify(value)`                        | Todo           | `JSON.stringify()`               |
+| `$Stringify(value)`                        | Implemented ✅           | `JSON.stringify()`               |
 
 Hello Devs 👋🏻
 `If you want to contribute you are always Welcome !! Come and Contribute Here > 3 💗🫠`

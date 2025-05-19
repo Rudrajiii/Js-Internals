@@ -34,6 +34,7 @@ run_test "test_isFinite.js"
 run_test "test_parseInt.js"
 run_test "test_parseJSON.js"
 run_test "test_stringifyJSON.js"
+run_test "test_parseFloat.js"
 
 
 # Print the results in a stylish table format
