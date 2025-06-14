@@ -181,6 +181,107 @@ console.log(parseFloat(".123"));
 console.log(parseFloat("1.0e+308"));
 console.log("------------------custom parseFloat()------------------");
 
+let k = Array.prototype.find.call({ 0: 'a', 1: 'b', length: 2 }, v => v === 'a'); // returns 'a'
+let g = $find({ 0: 'a', 1: 'b', length: 2 }, v => v === 'a'); // returns 'a'
+console.log(k);
+console.log("*************************");
+console.log(g);
+
+let h = [1,2,3,4];
+let o = h.find(r => r > 2);
+let c = h.$find(x => x > 2);
+console.log(o + "|||" + c);
+
+let arr = [5, 10, 15, 20];
+
+// Native and custom find: first element greater than 10
+let nativeResult1 = arr.find(x => x > 10);
+let customResult1 = arr.$find(x => x > 10);
+console.log("Test 1:", nativeResult1 === customResult1 ? "✅ Pass" : "❌ Fail", "->", nativeResult1, "||", customResult1);
+
+// Native and custom find: no match (returns undefined)
+let nativeResult2 = arr.find(x => x > 100);
+let customResult2 = arr.$find(x => x > 100);
+console.log("Test 2:", nativeResult2 === customResult2 ? "✅ Pass" : "❌ Fail", "->", nativeResult2, "||", customResult2);
+
+// Native and custom find on string array
+let fruits = ['apple', 'banana', 'cherry'];
+let nativeResult3 = fruits.find(fruit => fruit.startsWith('b'));
+let customResult3 = fruits.$find(fruit => fruit.startsWith('b'));
+console.log("Test 3:", nativeResult3 === customResult3 ? "✅ Pass" : "❌ Fail", "->", nativeResult3, "||", customResult3);
+
+// Find using array-like object
+let arrayLike = { 0: 'a', 1: 'b', length: 2 };
+let nativeResult4 = Array.prototype.find.call(arrayLike, val => val === 'a');
+let customResult4 = $find(arrayLike, val => val === 'a');  // if needed
+console.log("Test 4:", nativeResult4 === customResult4 ? "✅ Pass" : "❌ Fail", "->", nativeResult4, "||", customResult4);
+
+// Sparse array
+let sparse = [1, , 3]; // index 1 is empty
+let nativeResult5 = sparse.find(x => x > 1);
+let customResult5 = sparse.$find(x => x > 1);
+console.log("Test 5:", nativeResult5 === customResult5 ? "✅ Pass" : "❌ Fail", "->", nativeResult5, "||", customResult5);
+
+// With index condition
+let nativeResult6 = arr.find((x, i) => i === 2);
+let customResult6 = arr.$find((x, i) => i === 2);
+console.log("Test 6:", nativeResult6 === customResult6 ? "✅ Pass" : "❌ Fail", "->", nativeResult6, "||", customResult6);
+
+console.log('================ Custom indexOf Tests ================');
+
+// ✅ Test 1: Basic usage
+let arr1 = [10, 20, 30, 40, 50];
+console.log(arr1.indexOf(30));       // 2
+console.log(arr1.$indexOf(30));      // 2
+
+// ✅ Test 2: Element not found
+console.log(arr1.indexOf(100));      // -1
+console.log(arr1.$indexOf(100));     // -1
+
+// ✅ Test 3: fromIndex positive
+console.log(arr1.indexOf(30, 3));    // -1
+console.log(arr1.$indexOf(30, 3));   // -1
+
+// ✅ Test 4: fromIndex negative
+console.log(arr1.indexOf(40, -2));   // 3
+console.log(arr1.$indexOf(40, -2));  // 3
+
+// ✅ Test 5: Empty array
+let arr2 = [];
+console.log(arr2.indexOf(1));        // -1
+console.log(arr2.$indexOf(1));       // -1
+
+// ✅ Test 6: Duplicates
+let arr3 = ['a', 'b', 'a', 'c'];
+console.log(arr3.indexOf('a'));      // 0
+console.log(arr3.$indexOf('a'));     // 0
+
+// ✅ Test 7: Search for undefined
+let arr4 = [1, undefined, 3];
+console.log(arr4.indexOf(undefined));    // 1
+console.log(arr4.$indexOf(undefined));   // 1
+
+// ✅ Test 8: Non-array object with length
+let fakeArray = { 0: 'x', 1: 'y', 2: 'z', length: 3 };
+let nativeFake = Array.prototype.indexOf.call(fakeArray, 'y');  // 1
+let customFake = Array.prototype.$indexOf.call(fakeArray, 'y'); // 1
+console.log(nativeFake, customFake);
+
+// ✅ Test 9: fromIndex greater than length
+console.log(arr1.indexOf(10, 100));  // -1
+console.log(arr1.$indexOf(10, 100)); // -1
+
+// ✅ Test 10: fromIndex is a string number
+console.log(arr1.indexOf(20, "1"));  // 1
+console.log(arr1.$indexOf(20, "1")); // 1
+
+// ✅ Test 11: Search NaN — both should fail because === is used
+let arr5 = [NaN];
+console.log(arr5.indexOf(NaN));       // -1
+console.log(arr5.$indexOf(NaN));      // -1
+
+console.log('=====================================================');
+
 // INTERNAL.map_internals();
 // INTERNAL.filter_internals();
 // INTERNAL.reduce_internals();

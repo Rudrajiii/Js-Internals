@@ -89,6 +89,8 @@ const CustomReduce = require('./src/Polyfills/Array_Object/Instance_Methods/_red
 const CustomForEach = require('./src/Polyfills/Array_Object/Instance_Methods/_forEach');
 const CustomSome = require('./src/Polyfills/Array_Object/Instance_Methods/_some');
 const CustomEvery = require('./src/Polyfills/Array_Object/Instance_Methods/_every');
+const CustomFind = require('./src/Polyfills/Array_Object/Instance_Methods/_find');
+const CustomIndexOf = require('./src/Polyfills/Array_Object/Instance_Methods/_indexOf');
 
 //?Static Methods
 const CustomFrom = require('./src/Polyfills/Array_Object/Static_Methods/_from');
@@ -115,6 +117,8 @@ Array.prototype.$reduce = CustomReduce.__reduce;
 Array.prototype.$forEach = CustomForEach.__forEach;
 Array.prototype.$some = CustomSome.__some;
 Array.prototype.$every = CustomEvery.__every ;
+Array.prototype.$find = CustomFind.__find;
+Array.prototype.$indexOf = CustomIndexOf.__indexOf;
 
 //Set Custom Funcs to Function Scope
 Function.prototype.$from = CustomFrom.__from;
@@ -123,6 +127,9 @@ Function.prototype.$apply = CustomApply.__apply;
 Function.prototype.$isArray = CustomIsArray.__isArray;
 Function.prototype.$of = CustomOf.__of;
 Function.prototype.$bind = CustomBind.__bind;
+
+//*special case;
+global.$find = Function.call.bind(Array.prototype.find);
 
 //Set in Global Scope
 $isNaN = CustomNaN.$isNaN;
@@ -158,6 +165,8 @@ function GET_ALL() {
     { name: 'Bind', fn: CustomBind.bind_internals },
     { name: 'StringifyJSON', fn: CustomStringifyJSON.stringifyJSON_internals },
     { name: 'parseFloat', fn: CustomparseFloat.parseFloat_internals },
+    { name: 'find', fn: CustomFind.find_internals },
+    { name: 'indexOf', fn: CustomIndexOf.indexOf_internals}
   ];
   
   // Process each internal
@@ -194,6 +203,8 @@ module.exports = {
     bind_internals: CustomBind.bind_internals,
     stringifyJSON_internals: CustomStringifyJSON.stringifyJSON_internals,
     parseFloat_internals: CustomparseFloat.parseFloat_internals,
+    find_internals: CustomFind.find_internals,
+    indexOf_internals: CustomIndexOf.indexOf_internals
 },
   GET_ALL
 };

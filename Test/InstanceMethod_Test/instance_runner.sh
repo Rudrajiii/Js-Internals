@@ -35,6 +35,8 @@ run_test "test_reduce.js"
 run_test "test_forEach.js"
 run_test "test_some.js"
 run_test "test_every.js"
+run_test "test_find.js"
+run_test "test_indexOf.js"
 
 # Print the results in a stylish table format
 echo "========================================="
