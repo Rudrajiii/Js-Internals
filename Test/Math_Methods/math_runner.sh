@@ -29,18 +29,22 @@ run_test() {
 results=()
 
 # Run the test files for instance methods
-run_test "test_map.js"
-run_test "test_filter.js"
-run_test "test_reduce.js"
-run_test "test_forEach.js"
-run_test "test_some.js"
-run_test "test_every.js"
-run_test "test_find.js"
-run_test "test_indexOf.js"
-run_test "test_includes.js"
-run_test "test_reverse.js"
-run_test "test_sort.js"
-run_test "test_splice.js"
-run_test "test_slice.js"
+run_test "test_max.js"
+run_test "test_min.js"
 
+# Print the results in a stylish table format
+echo "========================================="
+echo "   Test Results For Math Methods     "
+echo "========================================="
+printf "%-20s | %-5s | %-10s\n" "Test Name" "Result" "Time Taken"
+echo "-----------------------------------------"
+
+# Loop through the results array and print each result
+for result in "${results[@]}"; do
+    IFS=' | ' read -r name status time <<< "$result"
+    printf "%-20s | %-5s | %-10s\n" "$name" "$status" "$time"
+done
+
+echo "========================================="
 echo "All tests completed! ➡️"
+                

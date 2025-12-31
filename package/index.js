@@ -91,6 +91,11 @@ const CustomSome = require('./src/Polyfills/Array_Object/Instance_Methods/_some'
 const CustomEvery = require('./src/Polyfills/Array_Object/Instance_Methods/_every');
 const CustomFind = require('./src/Polyfills/Array_Object/Instance_Methods/_find');
 const CustomIndexOf = require('./src/Polyfills/Array_Object/Instance_Methods/_indexOf');
+const CustomIncludes = require('./src/Polyfills/Array_Object/Instance_Methods/_includes');
+const CustomReverse = require('./src/Polyfills/Array_Object/Instance_Methods/_reverse');
+const CustomSort = require('./src/Polyfills/Array_Object/Instance_Methods/_sort');
+const CustomSplice = require('./src/Polyfills/Array_Object/Instance_Methods/_splice');
+const CustomSlice = require('./src/Polyfills/Array_Object/Instance_Methods/_slice');
 
 //?Static Methods
 const CustomFrom = require('./src/Polyfills/Array_Object/Static_Methods/_from');
@@ -110,6 +115,11 @@ const CustomparseInt = require('./src/Polyfills/Global/_parseInt');
 const CustomparseJSON = require('./src/Polyfills/Global/_parseJSON');
 const CustomStringifyJSON = require('./src/Polyfills/Global/_stringifyJSON');
 const CustomparseFloat = require('./src/Polyfills/Global/_parseFloat');
+
+//*Math Methods
+const CustomMathMax = require('./src/Polyfills/Math/_max');
+const CustomMathMin = require('./src/Polyfills/Math/_min');
+
 //Set Custom Funcs to Array Scope 
 Array.prototype.$map = CustomMap.__map;
 Array.prototype.$filter = CustomFilter.__filter;
@@ -119,6 +129,11 @@ Array.prototype.$some = CustomSome.__some;
 Array.prototype.$every = CustomEvery.__every ;
 Array.prototype.$find = CustomFind.__find;
 Array.prototype.$indexOf = CustomIndexOf.__indexOf;
+Array.prototype.$includes = CustomIncludes.__includes;
+Array.prototype.$reverse = CustomReverse.__reverse;
+Array.prototype.$sort = CustomSort.__sort;
+Array.prototype.$splice = CustomSplice.__splice;
+Array.prototype.$slice = CustomSlice.__slice;
 
 //Set Custom Funcs to Function Scope
 Function.prototype.$from = CustomFrom.__from;
@@ -131,13 +146,17 @@ Function.prototype.$bind = CustomBind.__bind;
 //*special case;
 global.$find = Function.call.bind(Array.prototype.find);
 
-//Set in Global Scope
+//*Set in Global Scope
 $isNaN = CustomNaN.$isNaN;
 $isFinite = CustomisFinite.$isFinite;
 $parseInt = CustomparseInt.$parseInt;
 $parseFloat = CustomparseFloat.$parseFloat;
 $parseJSON = CustomparseJSON.$parseJSON;
 $stringifyJSON = CustomStringifyJSON.$stringifyJSON;
+
+//*Math Polyfills
+Math.$max = CustomMathMax.$max;
+Math.$min = CustomMathMin.$min;
 
 // Add function to run all internals
 function GET_ALL() {
@@ -166,7 +185,14 @@ function GET_ALL() {
     { name: 'StringifyJSON', fn: CustomStringifyJSON.stringifyJSON_internals },
     { name: 'parseFloat', fn: CustomparseFloat.parseFloat_internals },
     { name: 'find', fn: CustomFind.find_internals },
-    { name: 'indexOf', fn: CustomIndexOf.indexOf_internals}
+    { name: 'indexOf', fn: CustomIndexOf.indexOf_internals},
+    { name: 'MathMax', fn: CustomMathMax.max_internals },
+    { name: 'MathMin', fn: CustomMathMin.min_internals },
+    { name: 'Includes', fn: CustomIncludes.includes_internals },
+    { name: 'Reverse', fn: CustomReverse.reverse_internals },
+    { name: 'Sort', fn: CustomSort.sort_internals },
+    { name: 'Splice', fn: CustomSplice.splice_internals },
+    { name: 'Slice', fn: CustomSlice.slice_internals }
   ];
   
   // Process each internal
@@ -204,7 +230,14 @@ module.exports = {
     stringifyJSON_internals: CustomStringifyJSON.stringifyJSON_internals,
     parseFloat_internals: CustomparseFloat.parseFloat_internals,
     find_internals: CustomFind.find_internals,
-    indexOf_internals: CustomIndexOf.indexOf_internals
+    indexOf_internals: CustomIndexOf.indexOf_internals,
+    max_internals: CustomMathMax.max_internals,
+    min_internals: CustomMathMin.min_internals,
+    includes_internals: CustomIncludes.includes_internals,
+    reverse_internals: CustomReverse.reverse_internals,
+    sort_internals: CustomSort.sort_internals,
+    splice_internals: CustomSplice.splice_internals,
+    slice_internals: CustomSlice.slice_internals
 },
   GET_ALL
 };

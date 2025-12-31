@@ -99,7 +99,7 @@ tests.forEach(test => {
     try {
         const result = test.input.__reduce(test.callback, test.initialValue, test.context);
         if (result === test.expected || (test.expected === 'TypeError' && result instanceof TypeError)) {
-            console.log(`Passed Test${test.testNumber} ✅: ${test.description}`);
+            console.log(`✅ Passed Test${test.testNumber}: ${test.description}`);
         } else {
             console.log(`Failed Test${test.testNumber} ❌: ${test.description}`);
             console.log(`Expected: ${JSON.stringify(test.expected)}`);
@@ -107,7 +107,7 @@ tests.forEach(test => {
         }
     } catch (e) {
         if (test.expected === 'TypeError' && e instanceof TypeError) {
-            console.log(`Passed Test${test.testNumber} ✅: ${test.description} (Error Thrown as Expected)`);
+            console.log(`✅ Passed Test${test.testNumber}: ${test.description} (Error Thrown as Expected)`);
         } else {
             console.log(`Failed Test${test.testNumber} ❌: ${test.description}`);
             console.log(`Expected: ${test.expected}`);

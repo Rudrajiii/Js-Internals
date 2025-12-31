@@ -282,6 +282,48 @@ console.log(arr5.$indexOf(NaN));      // -1
 
 console.log('=====================================================');
 
+console.log(Math.$max(1, 2, 3)); // 3
+console.log(Math.$max(-1, -2, -3)); // -1
+console.log(Math.$max()); // -Infinity
+console.log(Math.$max(10 , 2 , NaN))
+console.log(Math.$max("NaN" , "2" , "1"))
+
+console.log(Math.min(1, 2, 3)); // 1
+console.log(Math.$min(1, 2, 3)); // 1
+console.log(Math.$min(-1, -2, -3)); // -3
+console.log(Math.$min()); // Infinity
+console.log(Math.$min(5, 10, 15, 20)); //
+console.log(Math.min(1, "2", 3)); // Na
+console.log(Math.$min(NaN))
+
+
+console.log("##########################################################");
+const array1 = [1, 2, 3];
+
+console.log(array1.$includes(2));
+// Expected output: true
+
+const pets = ["cat", "dog", "bat"];
+
+console.log(pets.$includes("cat"));
+// Expected output: true
+
+console.log(pets.$includes("at"));
+// Expected output: false
+console.log("##########################################################");
+
+
+const T = [3, undefined, 1];
+console.log(arr.sort());
+// Expected output: [1, 3, undefined]
+console.log(arr.$sort());
+
+
+const a = [1, , 3];
+a.$splice(1, 1);
+console.log("custom splice " , a);
+
+// INTERNAL.map_internals();
 // INTERNAL.map_internals();
 // INTERNAL.filter_internals();
 // INTERNAL.reduce_internals();

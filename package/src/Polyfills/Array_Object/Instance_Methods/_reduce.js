@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const __call = require('../../Function/_call');
+
 Array.prototype.__reduce = function(callback, initialValue, context) {
     let accumulator = initialValue;
     let startIndex = 0;
@@ -61,7 +62,6 @@ module.exports = {
                 chalk.green('✓ Created: ') + 
                 chalk.white(fileName)
             );
-        // return `File created at ${outputPath}`;
     }else{
         const fileName = path.basename(outputPath);
             console.log(
@@ -69,7 +69,6 @@ module.exports = {
                 chalk.white(fileName) + 
                 chalk.gray(` already exists.`)
             );
-        // return `File already exists at ${outputPath}`;
     }
 }
 };

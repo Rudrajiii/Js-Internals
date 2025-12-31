@@ -90,7 +90,7 @@ tests.forEach(test => {
             }
 
             if (deepEqual(arrayCopy, test.expected)) {
-                console.log(`Passed Test ${test.testNumber} ✅: ${test.description}`);
+                console.log(`✅ Passed Test ${test.testNumber}: ${test.description}`);
             } else {
                 console.log(`Failed Test ${test.testNumber} ❌: ${test.description}`);
                 console.log(`Expected: ${JSON.stringify(test.expected)}`);
@@ -99,7 +99,7 @@ tests.forEach(test => {
         }
     } catch (error) {
         if (test.expectedError && error instanceof TypeError) {
-            console.log(`Passed Test ${test.testNumber} ✅: ${test.description}`);
+            console.log(`✅ Passed Test ${test.testNumber}: ${test.description}`);
         } else {
             console.log(`Failed Test ${test.testNumber} ❌: ${test.description}`);
             console.error(error);

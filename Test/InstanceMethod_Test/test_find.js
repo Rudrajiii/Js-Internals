@@ -84,7 +84,7 @@ tests.forEach(test => {
     try {
         const arrayCopy = Array.isArray(test.value) ? [...test.value] : test.value;
 
-        console.log(`Running Test ${test.testNumber}: ${test.description}`);
+        // console.log(`Running Test ${test.testNumber}: ${test.description}`);
 
         const result = test.context !== undefined
             ? __find.call(arrayCopy, test.callback, test.context)
@@ -93,17 +93,17 @@ tests.forEach(test => {
         if (test.expectedError) {
             console.log(`Failed Test ${test.testNumber} ❌: Expected TypeError`);
         } else if (deepEqual(result, test.expected)) {
-            console.log(`Passed Test ${test.testNumber} ✅`);
+            console.log(`✅ Passed Test ${test.testNumber}: ${test.description}`);
         } else {
-            console.log(`Failed Test ${test.testNumber} ❌`);
+            console.log(`Failed Test ${test.testNumber} ❌: ${test.description}`);
             console.log(`Expected: ${JSON.stringify(test.expected)}`);
             console.log(`Actual:   ${JSON.stringify(result)}`);
         }
     } catch (err) {
         if (test.expectedError && err instanceof TypeError) {
-            console.log(`Passed Test ${test.testNumber} ✅ (Error correctly thrown)`);
+            console.log(`✅ Passed Test ${test.testNumber}: ${test.description} (Error correctly thrown)`);
         } else {
-            console.log(`Failed Test ${test.testNumber} ❌`);
+            console.log(`Failed Test ${test.testNumber} ❌: ${test.description}`);
             console.error(err);
         }
     }
