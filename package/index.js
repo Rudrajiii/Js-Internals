@@ -1,88 +1,11 @@
 const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
+const logger = require('./src/utils/logger');
 
-// Create logger before requiring other modules
-const logger = {
-  success: (message) => console.log(chalk.green('✓ ') + chalk.green.bold(message)),
-  info: (message) => console.log(chalk.blue('ℹ ') + chalk.blue(message)),
-  warning: (message) => console.log(chalk.yellow('⚠ ') + chalk.yellow(message)),
-  error: (message) => console.log(chalk.red('✗ ') + chalk.red.bold(message)),
-  fileCreated: (filePath) => {
-    const fileName = path.basename(filePath);
-    console.log(
-      chalk.green('✓ Created: ') + 
-      chalk.white(fileName)
-    );
-  },
-  fileExists: (filePath) => {
-    const fileName = path.basename(filePath);
-    console.log(
-      chalk.yellow('⚠ Skipped: ') + 
-      chalk.white(fileName) + 
-      chalk.gray(` already exists.`)
-    );
-  },
-  functionInfo: (name) => {
-    console.log(
-      chalk.blue('➤ ') + 
-      chalk.blue.bold(`${name} `) + 
-      chalk.blue('internals')
-    );
-  }
-};
-
-// Create utils directory if it doesn't exist
-const utilsDir = path.join(__dirname, 'src', 'utils');
-if (!fs.existsSync(utilsDir)) {
-  fs.mkdirSync(utilsDir, { recursive: true });
-}
-
-// Write logger to a file
-const loggerPath = path.join(utilsDir, 'logger.js');
-if (!fs.existsSync(loggerPath)) {
-  const loggerCode = `
-const chalk = require('chalk');
-const path = require('path');
-
-const logger = {
-  success: (message) => console.log(chalk.green('✓ ') + chalk.green.bold(message)),
-  info: (message) => console.log(chalk.blue('ℹ ') + chalk.blue(message)),
-  warning: (message) => console.log(chalk.yellow('⚠ ') + chalk.yellow(message)),
-  error: (message) => console.log(chalk.red('✗ ') + chalk.red.bold(message)),
-  fileCreated: (filePath) => {
-    const fileName = path.basename(filePath);
-    console.log(
-      chalk.green('✓ Created: ') + 
-      chalk.white(fileName)
-    );
-  },
-  fileExists: (filePath) => {
-    const fileName = path.basename(filePath);
-    console.log(
-      chalk.yellow('⚠ Skipped: ') + 
-      chalk.white(fileName) + 
-      chalk.gray(\` already exists!!\`)
-    );
-  },
-  functionInfo: (name) => {
-    console.log(
-      chalk.blue('➤ ') + 
-      chalk.blue.bold(\`\${name} \`) + 
-      chalk.blue('internals')
-    );
-  }
-};
-
-module.exports = logger;
-  `;
-  fs.writeFileSync(loggerPath, loggerCode, 'utf8');
-}
-
-//Source destination;
-//*Array_Objects
+//Array_Objects
 const CustomSet = require('./src/DataStructures/set');
-//?Instance Methods
+//Instance Methods
 const CustomMap = require('./src/Polyfills/Array_Object/Instance_Methods/_map');
 const CustomFilter = require('./src/Polyfills/Array_Object/Instance_Methods/_filter');
 const CustomReduce = require('./src/Polyfills/Array_Object/Instance_Methods/_reduce');
